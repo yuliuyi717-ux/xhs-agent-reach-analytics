@@ -1,28 +1,28 @@
-# Open Source Compliance Checklist (Template)
+# Open Source Compliance Checklist
 
 ## A. Repository and Licensing
 
-- [ ] Choose and add OSS license (`LICENSE`)
-- [ ] Ensure dependency licenses are compatible
+- [ ] Add an OSS license file (`LICENSE`)
+- [ ] Confirm dependency license compatibility
 - [ ] Remove proprietary keys, tokens, cookies, and local configs
 
 ## B. Legal and Policy Docs
 
-- [ ] Fill `compliance/DISCLAIMER.md`
-- [ ] Fill `compliance/LEGAL.md`
-- [ ] Fill `compliance/PRIVACY_NOTICE.md`
-- [ ] Fill `compliance/TAKEDOWN_POLICY.md`
+- [ ] Review `compliance/DISCLAIMER.md`
+- [ ] Review `compliance/LEGAL.md`
+- [ ] Review `compliance/PRIVACY_NOTICE.md`
+- [ ] Review `compliance/TAKEDOWN_POLICY.md`
 
 ## C. Data Safety
 
 - [ ] No real user datasets committed
-- [ ] Sample data is anonymized/synthetic
+- [ ] Sample data is anonymized or synthetic
 - [ ] Retention and deletion behavior documented
 
 ## D. Platform Risk Controls
 
 - [ ] No instructions for bypassing anti-bot controls
-- [ ] Default rate/pace is conservative and randomized
+- [ ] Default rate and pace is conservative and randomized
 - [ ] Scope-limiting options enabled by default (time window, max volume)
 
 ## E. Security
@@ -33,9 +33,9 @@
 
 ## F. Release Notes
 
-- [ ] Add "Not legal advice" note in README
-- [ ] Add "No affiliation" statement
-- [ ] Add "User responsibility" section for ToS compliance
+- [ ] Add "not legal advice" note in README
+- [ ] Add "no affiliation" statement
+- [ ] Add "user responsibility" section for ToS compliance
 
 ## G. Final Review
 

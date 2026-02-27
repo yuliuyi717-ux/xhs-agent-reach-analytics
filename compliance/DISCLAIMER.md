@@ -1,6 +1,4 @@
-# Disclaimer (Template)
-
-> This document is a template for open-source release. Replace all placeholders before publishing.
+# Disclaimer
 
 ## Non-Legal Advice
 
@@ -9,7 +7,7 @@
 
 ## No Affiliation
 
-- `[PROJECT_NAME]` is an independent project and is not affiliated with, endorsed by, or sponsored by Xiaohongshu (RED) or any platform referenced in the repository.
+- XHS Agent-Reach Analytics is an independent project and is not affiliated with, endorsed by, or sponsored by Xiaohongshu (RED) or any platform referenced in this repository.
 - All third-party names, trademarks, and logos belong to their respective owners.
 
 ## Acceptable Use
@@ -31,5 +29,5 @@
 
 ## Contact
 
-- Compliance contact: `[COMPLIANCE_EMAIL]`
-- Maintainer: `[MAINTAINER_NAME]`
+- Compliance contact: open a GitHub issue and use a `compliance` label.
+- Maintainer: Feiyang Yu

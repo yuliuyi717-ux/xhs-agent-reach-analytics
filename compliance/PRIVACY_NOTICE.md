@@ -1,18 +1,16 @@
-# Privacy Notice (Template)
-
-> Use this template if you publish data-processing behavior with the project.
+# Privacy Notice
 
 ## 1. Controller Information
 
-- Project: `[PROJECT_NAME]`
-- Maintainer/Controller: `[MAINTAINER_NAME / ORG]`
-- Contact: `[PRIVACY_EMAIL]`
+- Project: XHS Agent-Reach Analytics
+- Maintainer/Controller: Feiyang Yu
+- Contact: open a GitHub issue with a `privacy` or `compliance` label.
 
 ## 2. Data Categories
 
 Depending on configuration, the project may process:
 
-- Account/session artifacts (e.g., cookies, auth state)
+- Account/session artifacts (for example cookies and auth state)
 - Public content metadata (title, URL, timestamps, engagement metrics)
 - Content text fields (if enabled)
 - Operational logs and error traces
@@ -23,32 +21,32 @@ Depending on configuration, the project may process:
 - Operational quality checks and debugging
 - Internal research and reporting
 
-## 4. Legal Basis (Example Structure)
+## 4. Legal Basis
 
-- Contractual necessity / legitimate interest / consent (choose applicable basis per jurisdiction)
-- The operator must document the actual basis before use
+- The deployer/operator must determine and document the lawful basis before use in each jurisdiction.
+- Typical bases include legitimate interest, consent, or contractual necessity, depending on scenario and law.
 
 ## 5. Data Minimization and Defaults
 
-- Only collect fields required for stated purposes
-- Disable optional content fields if not needed
-- Avoid collecting special categories of personal data
+- Only collect fields required for stated purposes.
+- Disable optional content fields if not needed.
+- Avoid collecting special categories of personal data.
 
 ## 6. Retention and Deletion
 
-- Default retention window: `[RETENTION_DAYS]` days
-- Deletion method: `[DELETE_PROCESS]`
-- User/request handling SLA: `[SLA_DAYS]` days
+- Default retention window: 30 days (recommended baseline).
+- Deletion method: remove date-partitioned files under `data/raw`, `data/by_keyword`, `data/by_date`, `data/reports`, and `data/runlog`.
+- User/request handling SLA: 15 business days.
 
 ## 7. Sharing and Transfers
 
-- Third-party sharing: `[NONE / LIST]`
-- Cross-border transfer: `[YES/NO + SAFEGUARDS]`
+- Third-party sharing: none by default.
+- Cross-border transfer: none by default; if enabled by operator, appropriate safeguards and notices are required.
 
 ## 8. Security Controls
 
 - Access control for output files
-- Encryption at rest/in transit where applicable
+- Encryption at rest and in transit where applicable
 - Audit logging for sensitive operations
 
 ## 9. Data Subject Rights
@@ -56,10 +54,10 @@ Depending on configuration, the project may process:
 Where applicable, users may request:
 
 - Access, correction, deletion
-- Restriction/objection to processing
+- Restriction or objection to processing
 - Data portability
 
-Contact: `[PRIVACY_EMAIL]`
+Contact: open a GitHub issue with a `privacy` label.
 
 ## 10. Changes
 

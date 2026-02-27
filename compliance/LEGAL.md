@@ -1,6 +1,4 @@
-# Legal Notice (Template)
-
-> Replace placeholders and align with local legal counsel before release.
+# Legal Notice
 
 ## 1. Scope
 
@@ -13,13 +11,13 @@ This repository provides software tooling only. It does not provide any right to
 
 ## 3. Intellectual Property
 
-- Code in this repository is licensed under `[LICENSE_TYPE]`.
-- Third-party content (e.g., notes, comments, media, user-generated text/images) is not covered by the repository license unless explicitly stated.
+- Code license status: to be finalized before public OSS release (recommended: MIT or Apache-2.0).
+- Third-party content (for example notes, comments, media, user-generated text/images) is not covered by repository code license unless explicitly stated.
 - Users must not redistribute third-party content without proper authorization.
 
 ## 4. Personal Data and Privacy
 
-- Any personal data processing must follow applicable privacy laws (e.g., PIPL, GDPR, local regulations).
+- Any personal data processing must follow applicable privacy laws (for example PIPL, GDPR, and local regulations).
 - Users must implement purpose limitation, data minimization, retention limits, and deletion workflows.
 
 ## 5. Prohibited Conduct
@@ -32,13 +30,13 @@ Users must not use this project to:
 
 ## 6. Security and Abuse Response
 
-- Report legal or abuse concerns to `[COMPLIANCE_EMAIL]`.
+- Report legal or abuse concerns by opening a GitHub issue with a `compliance` label.
 - Maintainers may refuse support or remove access guidance for clearly abusive use cases.
 
 ## 7. Jurisdiction and Governing Law
 
-- Governing law: `[GOVERNING_LAW]`
-- Dispute venue: `[DISPUTE_VENUE]`
+- Governing law: laws of the People's Republic of China (excluding conflict-of-law rules).
+- Dispute venue: competent court in maintainer's jurisdiction, unless otherwise required by mandatory law.
 
 ## 8. Updates
 

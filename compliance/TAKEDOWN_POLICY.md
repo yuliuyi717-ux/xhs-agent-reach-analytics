@@ -1,4 +1,4 @@
-# Takedown Policy (Template)
+# Takedown Policy
 
 ## 1. Purpose
 
@@ -6,7 +6,7 @@ This policy provides a channel for reporting alleged copyright, privacy, or unla
 
 ## 2. Report Channel
 
-Send reports to: `[COMPLIANCE_EMAIL]`
+Open a GitHub issue and use one of these labels: `takedown`, `copyright`, `privacy`, `compliance`.
 
 ## 3. Required Information
 
@@ -20,9 +20,9 @@ Please include:
 
 ## 4. Handling Process
 
-- Acknowledge receipt within `[ACK_DAYS]` business days
-- Initial review within `[REVIEW_DAYS]` business days
-- If valid, remove/disable access in reasonable time
+- Acknowledge receipt within 3 business days
+- Initial review within 7 business days
+- If valid, remove or disable access in reasonable time
 - Notify relevant parties when appropriate
 
 ## 5. Counter-Notice
