@@ -122,6 +122,7 @@ crontab -e
 - `compliance/PRIVACY_NOTICE.md`
 - `compliance/TAKEDOWN_POLICY.md`
 - `compliance/OPEN_SOURCE_RELEASE_CHECKLIST.md`
+- `LICENSE` (MIT)
 
 重要说明：
 

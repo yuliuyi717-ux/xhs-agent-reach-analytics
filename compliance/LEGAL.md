@@ -17,7 +17,7 @@ This repository provides software tooling only. It does not provide any right to
 
 ## 3. Intellectual Property
 
-- Code license status: to be finalized before public OSS release (recommended: MIT or Apache-2.0).
+- Code license: MIT (see `LICENSE`).
 - Third-party content (for example notes, comments, media, user-generated text/images) is not covered by repository code license unless explicitly stated.
 - Users must not redistribute third-party content without proper authorization.
 
