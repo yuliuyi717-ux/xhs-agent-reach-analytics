@@ -21,6 +21,7 @@
 ## Data and Content Responsibility
 
 - Users must ensure they have a lawful basis to collect, process, store, and share data.
+- For commercial or production use, users should prioritize official platform APIs or legally authorized channels.
 - Users are responsible for content copyright, personal information processing, and retention policies.
 
 ## Limitation of Liability

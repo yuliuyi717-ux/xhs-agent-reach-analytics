@@ -9,6 +9,12 @@ This repository provides software tooling only. It does not provide any right to
 - Users must review and comply with relevant platform Terms of Service, robots policies, and API usage rules.
 - If a platform prohibits specific automation or scraping behaviors, users must not use this project for those behaviors.
 
+## 2.1 Data Source Policy
+
+- For commercial or production scenarios, users should prioritize official platform APIs or legally authorized data channels.
+- This repository does not grant any right to bypass platform controls or extract data beyond permitted scope.
+- If a platform operator or right holder submits a valid takedown request, maintainers will process it according to `compliance/TAKEDOWN_POLICY.md`.
+
 ## 3. Intellectual Property
 
 - Code license status: to be finalized before public OSS release (recommended: MIT or Apache-2.0).
