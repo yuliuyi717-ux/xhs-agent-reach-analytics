@@ -73,7 +73,17 @@ def _collect_feed_candidates(payload):
         if not isinstance(node, dict):
             return
 
-        possible_id = _first(node.get("note_id"), node.get("id"), node.get("feed_id"))
+        note_card = node.get("noteCard") if isinstance(node.get("noteCard"), dict) else {}
+        possible_id = _first(
+            node.get("note_id"),
+            node.get("noteId"),
+            node.get("id"),
+            node.get("feed_id"),
+            note_card.get("note_id"),
+            note_card.get("noteId"),
+            note_card.get("id"),
+            note_card.get("feed_id"),
+        )
         if possible_id:
             candidates.append(node)
 
@@ -89,20 +99,72 @@ def normalize_search_results(payload, keyword):
     seen = set()
 
     for item in _collect_feed_candidates(payload):
-        note_id = str(_first(item.get("note_id"), item.get("id"), item.get("feed_id")))
+        card = item.get("noteCard") if isinstance(item.get("noteCard"), dict) else item
+
+        feed_id = _first(
+            item.get("id"),
+            item.get("feed_id"),
+            item.get("feedId"),
+            card.get("id"),
+            card.get("feed_id"),
+            card.get("feedId"),
+            card.get("noteId"),
+            card.get("note_id"),
+        )
+        note_id = _first(
+            card.get("noteId"),
+            card.get("note_id"),
+            item.get("noteId"),
+            item.get("note_id"),
+            feed_id,
+        )
+
+        note_id = str(note_id)
         if not note_id:
             continue
         if note_id in seen:
             continue
         seen.add(note_id)
 
-        interact = item.get("interact_info") or item.get("interaction") or {}
-        user = item.get("user") or item.get("author") or {}
+        interact = (
+            card.get("interactInfo")
+            or card.get("interact_info")
+            or card.get("interaction")
+            or item.get("interactInfo")
+            or item.get("interact_info")
+            or {}
+        )
+        user = (
+            card.get("user")
+            or card.get("author")
+            or item.get("user")
+            or item.get("author")
+            or {}
+        )
 
-        title = _first(item.get("title"), item.get("note_title"), item.get("name"), "")
-        desc = _first(item.get("desc"), item.get("content"), item.get("note_content"), "")
-        xsec_token = _first(item.get("xsec_token"), item.get("xsecToken"), "")
-        feed_id = _first(item.get("id"), item.get("feed_id"), note_id)
+        title = _first(
+            card.get("title"),
+            card.get("displayTitle"),
+            card.get("note_title"),
+            card.get("name"),
+            item.get("title"),
+            "",
+        )
+        desc = _first(
+            card.get("desc"),
+            card.get("description"),
+            card.get("content"),
+            card.get("note_content"),
+            item.get("desc"),
+            "",
+        )
+        xsec_token = _first(
+            item.get("xsecToken"),
+            item.get("xsec_token"),
+            card.get("xsecToken"),
+            card.get("xsec_token"),
+            "",
+        )
 
         row = {
             "keyword": keyword,
@@ -111,19 +173,89 @@ def normalize_search_results(payload, keyword):
             "note_id": note_id,
             "xsec_token": str(xsec_token),
             "title": str(title),
-            "author": str(_first(user.get("nickname"), user.get("name"), user.get("username"), "")),
-            "publish_time": str(_first(item.get("time"), item.get("publish_time"), item.get("publishTime"), "")),
-            "likes": _to_int(_first(interact.get("liked_count"), interact.get("like_count"), item.get("liked_count"), item.get("like_count"), item.get("likes"), 0)),
-            "comments": _to_int(_first(interact.get("comment_count"), item.get("comment_count"), item.get("comments"), 0)),
-            "collects": _to_int(_first(interact.get("collected_count"), item.get("collected_count"), item.get("collects"), 0)),
-            "shares": _to_int(_first(interact.get("share_count"), item.get("share_count"), item.get("shares"), 0)),
+            "author": str(
+                _first(
+                    user.get("nickname"),
+                    user.get("nickName"),
+                    user.get("name"),
+                    user.get("username"),
+                    "",
+                )
+            ),
+            "publish_time": str(
+                _first(
+                    card.get("time"),
+                    card.get("publish_time"),
+                    card.get("publishTime"),
+                    item.get("time"),
+                    "",
+                )
+            ),
+            "likes": _to_int(
+                _first(
+                    interact.get("liked_count"),
+                    interact.get("like_count"),
+                    interact.get("likedCount"),
+                    interact.get("likeCount"),
+                    card.get("liked_count"),
+                    card.get("like_count"),
+                    card.get("likedCount"),
+                    card.get("likeCount"),
+                    card.get("likes"),
+                    0,
+                )
+            ),
+            "comments": _to_int(
+                _first(
+                    interact.get("comment_count"),
+                    interact.get("commentCount"),
+                    card.get("comment_count"),
+                    card.get("commentCount"),
+                    card.get("comments"),
+                    0,
+                )
+            ),
+            "collects": _to_int(
+                _first(
+                    interact.get("collected_count"),
+                    interact.get("collect_count"),
+                    interact.get("collectedCount"),
+                    interact.get("collectCount"),
+                    card.get("collected_count"),
+                    card.get("collect_count"),
+                    card.get("collectedCount"),
+                    card.get("collectCount"),
+                    card.get("collects"),
+                    0,
+                )
+            ),
+            "shares": _to_int(
+                _first(
+                    interact.get("share_count"),
+                    interact.get("shared_count"),
+                    interact.get("shareCount"),
+                    interact.get("sharedCount"),
+                    card.get("share_count"),
+                    card.get("shared_count"),
+                    card.get("shareCount"),
+                    card.get("sharedCount"),
+                    card.get("shares"),
+                    0,
+                )
+            ),
             "desc": str(desc),
             "detail_content": "",
             "detail_tags": "",
             "detail_opened": False,
         }
 
-        note_url = _first(item.get("note_url"), item.get("url"), "")
+        note_url = _first(
+            card.get("note_url"),
+            card.get("url"),
+            item.get("note_url"),
+            item.get("url"),
+            "",
+        )
         if note_url:
             row["note_url"] = str(note_url)
         else:
@@ -138,27 +270,111 @@ def merge_detail_into_row(row, detail):
     if not isinstance(detail, dict):
         return row
 
-    merged = dict(row)
-    merged["detail_opened"] = bool(detail.get("_opened", merged.get("detail_opened", False)))
+    note = detail
+    if isinstance(detail.get("data"), dict) and isinstance(detail["data"].get("note"), dict):
+        note = detail["data"]["note"]
+    elif isinstance(detail.get("note"), dict):
+        note = detail["note"]
 
-    title = _first(detail.get("title"), merged.get("title"))
-    author = _first(detail.get("author"), merged.get("author"))
-    publish_time = _first(detail.get("publish_time"), merged.get("publish_time"))
+    merged = dict(row)
+    opened = detail.get("_opened")
+    if opened is None:
+        opened = isinstance(note, dict) and bool(note)
+    merged["detail_opened"] = bool(opened)
+
+    user = note.get("user") if isinstance(note.get("user"), dict) else {}
+    interact = (
+        note.get("interactInfo")
+        if isinstance(note.get("interactInfo"), dict)
+        else (note.get("interact_info") if isinstance(note.get("interact_info"), dict) else {})
+    )
+
+    title = _first(
+        note.get("title"),
+        note.get("displayTitle"),
+        merged.get("title"),
+    )
+    author = _first(
+        user.get("nickname"),
+        user.get("nickName"),
+        note.get("author"),
+        merged.get("author"),
+    )
+    publish_time = _first(
+        note.get("time"),
+        note.get("publish_time"),
+        note.get("publishTime"),
+        merged.get("publish_time"),
+    )
 
     merged["title"] = str(title)
     merged["author"] = str(author)
     merged["publish_time"] = str(publish_time)
 
-    merged["likes"] = _to_int(_first(detail.get("likes"), merged.get("likes"), 0))
-    merged["comments"] = _to_int(_first(detail.get("comments"), merged.get("comments"), 0))
-    merged["collects"] = _to_int(_first(detail.get("collects"), merged.get("collects"), 0))
-    merged["shares"] = _to_int(_first(detail.get("shares"), merged.get("shares"), 0))
+    merged["likes"] = _to_int(
+        _first(
+            interact.get("likedCount"),
+            interact.get("likeCount"),
+            interact.get("liked_count"),
+            interact.get("like_count"),
+            note.get("likes"),
+            merged.get("likes"),
+            0,
+        )
+    )
+    merged["comments"] = _to_int(
+        _first(
+            interact.get("commentCount"),
+            interact.get("comment_count"),
+            note.get("comments"),
+            merged.get("comments"),
+            0,
+        )
+    )
+    merged["collects"] = _to_int(
+        _first(
+            interact.get("collectedCount"),
+            interact.get("collectCount"),
+            interact.get("collected_count"),
+            interact.get("collect_count"),
+            note.get("collects"),
+            merged.get("collects"),
+            0,
+        )
+    )
+    merged["shares"] = _to_int(
+        _first(
+            interact.get("sharedCount"),
+            interact.get("shareCount"),
+            interact.get("shared_count"),
+            interact.get("share_count"),
+            note.get("shares"),
+            merged.get("shares"),
+            0,
+        )
+    )
 
-    merged["detail_content"] = str(_first(detail.get("content"), merged.get("detail_content"), ""))
+    merged["detail_content"] = str(
+        _first(
+            note.get("desc"),
+            note.get("content"),
+            note.get("description"),
+            merged.get("detail_content"),
+            "",
+        )
+    )
 
-    tags = detail.get("tags")
+    tags = _first(note.get("tagList"), note.get("tags"), "")
     if isinstance(tags, list):
-        merged["detail_tags"] = "|".join(str(x).strip() for x in tags if str(x).strip())
+        out = []
+        for item in tags:
+            if isinstance(item, dict):
+                text = _first(item.get("name"), item.get("tagName"), item.get("text"), "")
+            else:
+                text = str(item)
+            if str(text).strip():
+                out.append(str(text).strip())
+        merged["detail_tags"] = "|".join(out)
     elif tags:
         merged["detail_tags"] = str(tags)
 

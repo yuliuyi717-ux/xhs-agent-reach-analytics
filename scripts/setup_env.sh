@@ -20,7 +20,9 @@ python -m pip install --upgrade pip
 
 # Agent-Reach requires Python 3.10+
 python -m pip install "https://github.com/Panniantong/agent-reach/archive/main.zip"
+python -m pip install pytest
 
 echo "[DONE] Environment ready."
 echo "[NEXT] Activate: source .venv/bin/activate"
 echo "[NEXT] Check: agent-reach doctor"
+echo "[NEXT] Optional test: python -m pytest -q"
