@@ -1,6 +1,6 @@
 # XHS Agent-Reach Analytics
 
-独立于现有爬虫项目的新方案：
+一个面向关键词监测的开源数据分析项目：
 
 - `Agent-Reach / mcporter / xiaohongshu-mcp` 负责数据获取
 - 本项目负责数据标准化、汇总、分析报表输出
@@ -54,7 +54,7 @@ mcporter list
 ./run.sh --keywords-file keywords.txt --max-per-keyword 30 --no-detail
 ```
 
-### 3) 生产参数（你当前需求）
+### 3) 推荐生产参数
 
 ```bash
 ./run.sh \
@@ -135,6 +135,6 @@ crontab -e
 
 ## 设计说明
 
-- 该方案不动你原来的 `xhs_keyword_crawler` 代码。
+- 项目采用“采集桥接 + 字段归一化 + 统计分析 + 分层落盘”的流水线设计。
 - 桥接层内置超时 + 重试，支持抖动场景下自动恢复。
 - 默认策略是单条失败不拖垮整批，并把失败细节落盘。
