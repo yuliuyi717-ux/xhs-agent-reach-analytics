@@ -113,6 +113,16 @@ crontab -e
 - `data/runlog/YYYY-MM-DD/errors.json`：错误明细（搜索/详情失败记录）
 - `data/runlog/YYYY-MM-DD/failed_keywords.txt`：搜索失败关键词清单（便于重跑）
 
+## 开源合规模板
+
+发布前请先填写这些模板文件：
+
+- `compliance/DISCLAIMER.md`
+- `compliance/LEGAL.md`
+- `compliance/PRIVACY_NOTICE.md`
+- `compliance/TAKEDOWN_POLICY.md`
+- `compliance/OPEN_SOURCE_RELEASE_CHECKLIST.md`
+
 ## 设计说明
 
 - 该方案不动你原来的 `xhs_keyword_crawler` 代码。
